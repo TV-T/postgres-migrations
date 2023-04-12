@@ -5,7 +5,7 @@ import {execSync, spawn} from "child_process"
 
 export const PASSWORD = "mysecretpassword"
 
-const HEALTH_CHECK_CMD = `'export PGPASSWORD=${PASSWORD}; HOST=$(hostname --ip-address); echo "SELECT 1" | psql --host=$HOST -U postgres -q -t -A'`
+const HEALTH_CHECK_CMD = `"export PGPASSWORD=${PASSWORD}; HOST=$(hostname --ip-address); psql -h $HOST -U postgres -q -t -A -c 'SELECT 1;'"`
 
 export const stopPostgres = (containerName: string) => {
   try {
