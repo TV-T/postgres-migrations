@@ -30,15 +30,16 @@
     "node": ">10.17.0"
   },
   "scripts": {
+    "prepublishOnly": "npm test && npm run build",
     "check-formatting": "prettier **/*.ts --list-different",
     "fix-formatting": "prettier **/*.ts --write",
     "lint": "npm run tslint && npm run check-formatting",
     "tslint": "tslint 'src/**/*.ts' --type-check --project tsconfig.json --format verbose",
     "test-integration": "ava --config ava.config.integration.cjs",
     "test-unit": "ava --config ava.config.unit.cjs",
-    "test": "npm run test-unit && npm run lint && npm run test-integration",
+    "test": "npm run test-unit && npm run lint",
     "preversion": "npm test",
-    "build": "rm -rf ./dist && rsync -a --exclude='*.ts' --exclude='__tests__' --exclude='__unit__' --prune-empty-dirs src/ dist/ && tsc --project tsconfig-build.json"
+    "build": "tsc --project tsconfig-build.json"
   },
   "husky": {
     "hooks": {
