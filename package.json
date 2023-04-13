@@ -31,7 +31,7 @@
   },
   "scripts": {
     "copyScript": "node copyScript.js",
-    "prepublishOnly": "npm test && npm run build && copyScript",
+    "prepublishOnly": "npm test && npm run build && npm run copyScript",
     "check-formatting": "prettier **/*.ts --list-different",
     "fix-formatting": "prettier **/*.ts --write",
     "lint": "npm run tslint && npm run check-formatting",
