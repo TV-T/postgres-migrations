@@ -31,10 +31,10 @@ export const loadMigrationFiles = async (
     return []
   }
 
-  const migrationFiles = [
+  const migrationFiles = Array.from(new Set([
     path.join(__dirname, "migrations/0_create-migrations-table.sql"),
     ...fileNames.map((fileName) => path.resolve(directory, fileName)),
-  ].filter(isValidFile)
+  ])).filter(isValidFile)
 
   const unorderedMigrations = await Promise.all(
     migrationFiles.map(loadMigrationFile),
